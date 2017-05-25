@@ -1,0 +1,142 @@
+CardioGuide:
+
+ip:      10.160.169.92
+mask:    255.255.255.0
+gateway: 10.160.169.1
+
+
+<< storescp --verbose --verbose-pc --debug --promiscuous --uid-padding --output-directory "images" 104
+
+outout dir for CRTVision application: "D:\Users\212306230\projects\CRTVision\images"
+
+storescp --verbose --verbose-pc --debug --promiscuous --uid-padding --output-directory "D:\Users\212306230\projects\CRTVision\images" 104
+
+storescu.exe --verbose --debug localhost 104 D:\Users\212306230\projects\opengl_ply\geimages\XA.1.3.12.2.1107.5.4.5.153782.30000014091104550396800000699.512
+
+$dcmtk: storescp v3.6.0 2011-01-06 $
+
+storescp: DICOM storage (C-STORE) SCP
+usage: storescp [options] [port]
+
+parameters:
+  port                           tcp/ip port number to listen on
+
+general options:
+  -h      --help                 print this help text and exit
+          --version              print version information and exit
+          --arguments            print expanded command line arguments
+  -q      --quiet                quiet mode, print no warnings and errors
+  -v      --verbose              verbose mode, print processing details
+  -d      --debug                debug mode, print debug information
+  -ll     --log-level            [l]evel: string constant
+                                 (fatal, error, warn, info, debug, trace)
+                                 use level l for the logger
+  -lc     --log-config           [f]ilename: string
+                                 use config file f for the logger
+  +v      --verbose-pc           show presentation contexts in verbose mode
+multi-process options:
+          --single-process       single process mode (default)
+          --fork                 fork child process for each association
+network options:
+  association negotiation profile from configuration file:
+    -xf   --config-file          [f]ilename, [p]rofile: string
+                                 use profile p from config file f
+  preferred network transfer syntaxes (not with --config-file):
+    +x=   --prefer-uncompr       prefer explicit VR local byte order (default)
+    +xe   --prefer-little        prefer explicit VR little endian TS
+    +xb   --prefer-big           prefer explicit VR big endian TS
+    +xs   --prefer-lossless      prefer default JPEG lossless TS
+    +xy   --prefer-jpeg8         prefer default JPEG lossy TS for 8 bit data
+    +xx   --prefer-jpeg12        prefer default JPEG lossy TS for 12 bit data
+    +xv   --prefer-j2k-lossless  prefer JPEG 2000 lossless TS
+    +xw   --prefer-j2k-lossy     prefer JPEG 2000 lossy TS
+    +xt   --prefer-jls-lossless  prefer JPEG-LS lossless TS
+    +xu   --prefer-jls-lossy     prefer JPEG-LS lossy TS
+    +xm   --prefer-mpeg2         prefer MPEG2 Main Profile @ Main Level TS
+    +xh   --prefer-mpeg2-high    prefer MPEG2 Main Profile @ High Level TS
+    +xr   --prefer-rle           prefer RLE lossless TS
+    +xi   --implicit             accept implicit VR little endian TS only
+    +xa   --accept-all           accept all supported transfer syntaxes
+  other network options:
+    -ta   --acse-timeout         [s]econds: integer (default: 30)
+                                 timeout for ACSE messages
+    -td   --dimse-timeout        [s]econds: integer (default: unlimited)
+                                 timeout for DIMSE messages
+    -aet  --aetitle              [a]etitle: string
+                                 set my AE title (default: STORESCP)
+    -pdu  --max-pdu              [n]umber of bytes: integer (4096..131072)
+                                 set max receive pdu to n bytes (def.: 16384)
+    -dhl  --disable-host-lookup  disable hostname lookup
+          --refuse               refuse association
+          --reject               reject association if no implement. class UID
+          --ignore               ignore store data, receive but do not store
+          --sleep-after          [s]econds: integer
+                                 sleep s seconds after store (default: 0)
+          --sleep-during         [s]econds: integer
+                                 sleep s seconds during store (default: 0)
+          --abort-after          abort association after receipt of C-STORE-RQ
+                                 (but before sending response)
+          --abort-during         abort association during receipt of C-STORE-RQ
+    -pm   --promiscuous          promiscuous mode, accept unknown SOP classes
+                                 (not with --config-file)
+    -up   --uid-padding          silently correct space-padded UIDs
+output options:
+  general:
+    -od   --output-directory     [d]irectory: string (default: ".")
+                                 write received objects to existing directory d
+  bit preserving mode:
+    -B    --normal               allow implicit format conversions (default)
+    +B    --bit-preserving       write data exactly as read
+  output file format:
+    +F    --write-file           write file format (default)
+    -F    --write-dataset        write data set without file meta information
+  output transfer syntax (not with --bit-preserving or compressed transmission):
+    +t=   --write-xfer-same      write with same TS as input (default)
+    +te   --write-xfer-little    write with explicit VR little endian TS
+    +tb   --write-xfer-big       write with explicit VR big endian TS
+    +ti   --write-xfer-implicit  write with implicit VR little endian TS
+  post-1993 value representations (not with --bit-preserving):
+    +u    --enable-new-vr        enable support for new VRs (UN/UT) (default)
+    -u    --disable-new-vr       disable support for new VRs, convert to OB
+  group length encoding (not with --bit-preserving):
+    +g=   --group-length-recalc  recalculate group lengths if present (default)
+    +g    --group-length-create  always write with group length elements
+    -g    --group-length-remove  always write without group length elements
+  length encoding in sequences and items (not with --bit-preserving):
+    +e    --length-explicit      write with explicit lengths (default)
+    -e    --length-undefined     write with undefined lengths
+  data set trailing padding (not with --write-dataset or --bit-preserving):
+    -p    --padding-off          no padding (default)
+    +p    --padding-create       [f]ile-pad [i]tem-pad: integer
+                                 align file on multiple of f bytes and items
+                                 on multiple of i bytes
+  sorting into subdirectories (not with --bit-preserving):
+    -ss   --sort-conc-studies    [p]refix: string
+                                 sort studies using prefix p and a timestamp
+    -su   --sort-on-study-uid    [p]refix: string
+                                 sort studies using prefix p and the Study
+                                 Instance UID
+    -sp   --sort-on-patientname  sort studies using the Patient's Name and
+                                 a timestamp
+  filename generation:
+    -uf   --default-filenames    generate filename from instance UID (default)
+    +uf   --unique-filenames     generate unique filenames
+    -tn   --timenames            generate filename from creation time
+    -fe   --filename-extension   [e]xtension: string
+                                 append e to all filenames
+event options:
+  -xcr    --exec-on-reception    [c]ommand: string
+                                 execute command c after having received and
+                                 processed one C-STORE-RQ message
+  -xcs    --exec-on-eostudy      [c]ommand: string
+                                 execute command c after having received and
+                                 processed all C-STORE-RQ messages that belong
+                                 to one study
+  -rns    --rename-on-eostudy    having received and processed all C-STORE-RQ
+                                 messages that belong to one study, rename
+                                 output files according to certain pattern
+  -tos    --eostudy-timeout      [t]imeout: integer
+                                 specifies a timeout of t seconds for
+                                 end-of-study determination
+  -xs     --exec-sync            execute command synchronously in foreground
+
