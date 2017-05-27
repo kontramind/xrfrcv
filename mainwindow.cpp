@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "xrfcinelooprcv.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,7 +21,7 @@ void MainWindow::Init(const QString &savedir, const QString& fileextension, cons
     mSaveDir = savedir;
 
     if(!mLoopRcv)
-        mLoopRcv = std::make_unique<CineLoopRcv>(mSaveDir, fileextension, port, eostudy_timeout, true, this);
+        mLoopRcv = std::make_unique<xrf::CineLoopRcv>(mSaveDir, fileextension, port, eostudy_timeout, true, this);
 
     mLoopRcv->init();
     connect(mLoopRcv.get(), SIGNAL(finished()), mLoopRcv.get(), SLOT(deleteLater()));

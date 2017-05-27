@@ -1,7 +1,6 @@
 #include "xrfcinelooprcv.h"
 
-#include <QMutex>
-
+namespace xrf {
 struct StoreCallbackData
 {
   CineLoopRcv* rcv;
@@ -726,17 +725,14 @@ void CineLoopRcv::run()
      while ( acceptAssociation().good() )
      {
          QMutexLocker(&this->mutex);
-
-         if(stopRunning)
-             break;
-
-//         OFLOG_INFO(storescpLogger, "GEDicomRcv run()");
+         if(stopRunning) break;
      }
 
      OFLOG_INFO(storescpLogger, "GEDicomRcv run - finished");
 }
 
-void CineLoopRcv::emitDcmFileReceivedSignal(const QString& fullpath)
-{
-    emit dcmFileReceived(fullpath);
+    void CineLoopRcv::emitDcmFileReceivedSignal(const QString& fullpath) {
+        emit dcmFileReceived(fullpath);
+    }
+
 }

@@ -29,7 +29,7 @@
 #include <QMutex>
 #include <QThread>
 
-
+namespace xrf {
 #define OFFIS_CONSOLE_APPLICATION "xrfviewer"
 
 static OFLogger storescpLogger = OFLog::getLogger("dcmtk.apps." OFFIS_CONSOLE_APPLICATION);
@@ -133,3 +133,4 @@ private:
     T_ASC_PresentationContextID presID;
 };
 
+}
