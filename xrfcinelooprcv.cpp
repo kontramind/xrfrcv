@@ -107,7 +107,7 @@ static void storeSCPCallback(void *callbackData,
       }
       else // file saved succesfully
       {
-          cbdata->rcv->emitDcmFileReceivedSignal(QString(fileName.c_str()));
+          cbdata->rcv->emitCineLoopReceivedSignal(QString(fileName.c_str()));
       }
     }
   }
@@ -194,7 +194,7 @@ CineLoopRcv::~CineLoopRcv()
 
     WSACleanup();
 
-    OFLOG_INFO(storescpLogger, "GEDicomRcv - DESTRUCTOR");
+    OFLOG_INFO(storescpLogger, "CineLoopRcv - DESTRUCTOR");
 }
 
 /*
@@ -728,11 +728,11 @@ void CineLoopRcv::run()
          if(stopRunning) break;
      }
 
-     OFLOG_INFO(storescpLogger, "GEDicomRcv run - finished");
+     OFLOG_INFO(storescpLogger, "CineLoopRcv run - finished");
 }
 
-    void CineLoopRcv::emitDcmFileReceivedSignal(const QString& fullpath) {
-        emit dcmFileReceived(fullpath);
+    void CineLoopRcv::emitCineLoopReceivedSignal(const QString& fullpath) {
+        emit cineLoopReceived(fullpath);
     }
 
 }

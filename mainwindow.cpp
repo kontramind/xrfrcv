@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "xrfcinelooprcv.h"
 
+#include <QDebug>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -25,7 +27,7 @@ void MainWindow::Init(const QString &savedir, const QString& fileextension, cons
 
     mLoopRcv->init();
     connect(mLoopRcv.get(), SIGNAL(finished()), mLoopRcv.get(), SLOT(deleteLater()));
-    connect(mLoopRcv.get(), SIGNAL(dcmFileReceived(const QString&)),this, SLOT(showModifiedFile(const QString&)));
+    connect(mLoopRcv.get(), SIGNAL(cineLoopReceived(const QString&)),this, SLOT(handleCineLoopReceived(const QString&)));
 }
 
 void MainWindow::Start() {
@@ -38,4 +40,9 @@ void MainWindow::Stop() {
 
 void MainWindow::Wait(unsigned long time_in_milliseconds) {
     if(mLoopRcv) mLoopRcv->wait(time_in_milliseconds);
+}
+
+void MainWindow::handleCineLoopReceived(const QString &loopfilename) {
+    qDebug() << "MainWindow::handleCineLoopReceived: " << loopfilename;
+
 }

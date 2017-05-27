@@ -57,7 +57,7 @@ public:
 
     void run() Q_DECL_OVERRIDE;
 
-    void emitDcmFileReceivedSignal(const QString& fullpath);
+    void emitCineLoopReceivedSignal(const QString& fullpath);
 
     OFCondition acceptAssociation();
 
@@ -73,7 +73,7 @@ public:
     E_TransferSyntax& writetransfersyntax() { return opt_writeTransferSyntax; }
 
 signals:
-    void dcmFileReceived(const QString& fullpath);
+    void cineLoopReceived(const QString& fullpath);
 
 public slots:
     void stop();

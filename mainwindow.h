@@ -24,6 +24,9 @@ public:
     void Stop();
     void Wait(unsigned long time_in_milliseconds);
 
+public slots:
+    void handleCineLoopReceived(const QString& loopfilename);
+
 private:
     Ui::MainWindow *ui;
     QString mSaveDir;
