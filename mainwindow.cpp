@@ -12,8 +12,7 @@ MainWindow::~MainWindow()
 {
     Stop();
     Wait(10*1000); // 10 secs
-    if(mLoopRcv)
-        delete mLoopRcv;
+    mLoopRcv.reset();
     delete ui;
 }
 
@@ -21,11 +20,11 @@ void MainWindow::Init(const QString &savedir, const QString& fileextension, cons
     mSaveDir = savedir;
 
     if(!mLoopRcv)
-        mLoopRcv = new CineLoopRcv(mSaveDir, fileextension, port, eostudy_timeout, true, this);
+        mLoopRcv = std::make_unique<CineLoopRcv>(mSaveDir, fileextension, port, eostudy_timeout, true, this);
 
     mLoopRcv->init();
-    QObject::connect(mLoopRcv, SIGNAL(finished()), mLoopRcv, SLOT(deleteLater()));
-    connect(mLoopRcv, SIGNAL(dcmFileReceived(const QString&)),this, SLOT(showModifiedFile(const QString&)));
+    connect(mLoopRcv.get(), SIGNAL(finished()), mLoopRcv.get(), SLOT(deleteLater()));
+    connect(mLoopRcv.get(), SIGNAL(dcmFileReceived(const QString&)),this, SLOT(showModifiedFile(const QString&)));
 }
 
 void MainWindow::Start() {

@@ -1,8 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include "xrfcinelooprcv.h"
+
+#include <QMainWindow>
+
+#include <memory>
 
 namespace Ui {
 class MainWindow;
@@ -24,7 +27,7 @@ public:
 private:
     Ui::MainWindow *ui;
     QString mSaveDir;
-    CineLoopRcv* mLoopRcv{nullptr};
+    std::unique_ptr<CineLoopRcv> mLoopRcv{nullptr};
 };
 
 #endif // MAINWINDOW_H
