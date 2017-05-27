@@ -8,6 +8,5 @@ int main(int argc, char *argv[])
     w.Init("C:/dev/data/received/", ".dcm", 104);
     w.Start();
     w.show();
-
     return a.exec();
 }
